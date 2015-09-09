@@ -1,0 +1,30 @@
+<b>MyBatis</b>
+---------------
+It is primarily data mapper with a database-centric view of things. You map result sets to objects without giving a rat’s rear-end about whether that data came from single/multiple tables, stored procs etc. calls with do using Interface with methods declarations, matching with <mapper><select> tags.
+
+<B>Pros:</b>
++ simplicity and faster development
++ good for writing pure sql (stored procs, functions included, complex queries)
+<B>Cons:</b>
+– SQLs might be tied to a specific database vendor
+– no in-built caching, paging mechanism (querying with max records actually does a full table scan)
+<B>When to Use:</b>
+* use when complete control over SQL is needed, especially if you have good knowledge of SQL.
+* data model doesn’t cleanly match object model or can change/get complex over time.
+* MyBatis works better if your view is more database-centric.
+-----------------------------------------------------------------------------------------------------------------------------
+<b>Hibernate</b>
+----------------
+This is primarily an Object-Relational Mapper (ORM) with an object-centric view of the world. In other words, it maps your object model to database tables with relatively little effort from your side (if the object model is in sync with data model).
+<B>Pros:</b>
++ database-agnostic query language
++ automatic SQL generation, OOPS concepts supported
++ HQL-level object caching, in-built pagination => high scalability.
+<B>Cons:</b>
+– fine tuning usually required and sessions are a pain to get right
+– schema changes can cause problems
+– complexity cost
+<b>When To Use:</b>
+* use when data-object mapping is synced and you have complete control over db.
+* when writing SQL is painful or complex.
+* Hibernate works better if your view is more object-centric.

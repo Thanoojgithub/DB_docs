@@ -1,0 +1,24 @@
+			
+		public Object get(Class clazz, Serializable id) : 
+		
+		1.hit the DB at the time of method call.
+		2.if it is valid object,it will return the object and it will store in the cache.
+		3. get() returns NULL, when we call get() with non-existing ID
+		4.for second time when we call get() with same id, it will check the cache and return the object from cache if it is available otherwise it will hit the DB again.
+		5. it will get the same object,when we try to access object after closing session.
+		
+		public Object load(Class theClass, Serializable id) : 
+		
+		1.on method load() call,it creates the proxy object and return it.
+		2.when we try to do any operation for that object, first it will hit DB, get the real instance and then it will do the  respective operation.
+		3. load() throws ObjectNotFoundException, when we access object, if we try to call load() with non-existing ID
+		4. for second time when we call load() with same id, it will check the cache and return the object from cache if it is available otherwise it will hit the DB again.
+		5. it throws 'org.hibernate.LazyInitializationException: could not initialize proxy - no Session', when we try to access object after closing session.
+		
+		Case1 : 
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		RegOffice regOfficeInc = (RegOffice)session.get(RegOffice.class, 30);
+		regOfficeInc = null;
+		regOfficeInc = (RegOffice)session.load(RegOffice.class, 30);// it will load from cache, even though ref is NULL.
+		session.close();
+		System.out.println(regOfficeInc);

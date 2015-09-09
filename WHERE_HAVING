@@ -1,0 +1,34 @@
+1. HAVING specifies a search condition for a group or an aggregate function used in SELECT statement.
+2. HAVING can be used only with the SELECT statement. HAVING is typically used in a GROUP BY clause. When GROUP BY is not used, HAVING behaves like a WHERE clause.
+3. A HAVING clause is like a WHERE clause, but applies only to groups as a whole, whereas the WHERE clause applies to individual rows.
+4. A query can contain both a WHERE clause and a HAVING clause. The WHERE clause is applied first to the individual rows in the tables . Only the rows that meet the conditions in the WHERE clause are grouped. The HAVING clause is then applied to the rows in the result set. Only the groups that meet the HAVING conditions appear in the query output.
+5. WHERE clause is used for filtering rows and it applies on each and every row, while HAVING clause is used to filter groups in SQL.
+Ex:
+
+SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders
+INNER JOIN Employees
+ON Orders.EmployeeID=Employees.EmployeeID WHERE lastName LIKE('%a%')
+GROUP BY LastName
+HAVING COUNT(Orders.OrderID) > 10;
+
+http://www.w3schools.com/SQL/trysql.asp?filename=trysql_select_having
+https://www.youtube.com/watch?v=yPu6qV5byu4
+https://www.youtube.com/watch?v=h8sPrUa8SRE (very importent)
+https://www.youtube.com/watch?v=kiKCv7urU2g
+
+--------------------------------------------------
+
+
+SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders
+INNER JOIN Employees
+ON Orders.EmployeeID=Employees.EmployeeID  WHERE COUNT(Orders.OrderID) > 27;
+
+Use case, when we try to use AGGREGATE functions on WHERE clause, it will throw an error :
+'could not prepare statement (1 misuse of aggregate: COUNT())'
+
+
+
+Rules :
+1. You can't use HAVING unless you also use GROUP BY.
+  i.e., 'could not prepare statement (1 a GROUP BY clause is required before HAVING)'
+2. HAVING can be used only with the SELECT statement. HAVING is typically used in a GROUP BY clause.
