@@ -1,0 +1,7 @@
+alter table mydb.employee add mrgId bigint NULL;
+
+select * from mydb.employee;
+update mydb.employee set mrgId = 2 where eid = 5;
+
+update mydb.employee set version  = 0;
+INSERT INTO mydb.employee(eid, ename, version) VALUES (5,'lakshman');
