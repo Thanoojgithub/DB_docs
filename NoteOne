@@ -5,3 +5,44 @@ update mydb.employee set mrgId = 2 where eid = 5;
 
 update mydb.employee set version  = 0;
 INSERT INTO mydb.employee(eid, ename, version) VALUES (5,'lakshman');
+
+
+-----------------------------------------------
+MYSQL ::  Q) select MrgName for an employee - self join
+
+
+CREATE TABLE 'emp' (
+  'eid' int(11) NOT NULL DEFAULT '0',
+  'ename' varchar(45) NOT NULL,
+  'mid' varchar(45) DEFAULT NULL,
+  PRIMARY KEY ('eid')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+SELECT * FROM mydb.emp;
+
+#if you have MrgName as a column then,
+#alter table mydb.emp DROP column mname;
+
+select e1.eid 'emp ID', e1.ename 'emp Name', e2.eid 'mrg ID', e2.ename 'mrg Name' from emp e1 join emp e2
+on e1.mid = e2.eid;
+
+#------------------------------------------------------------------------------------------
+
+Q) get list of customers and sum(account bal) where each customer having more than 1 account
+
+INSERT INTO `mydb`.`customer` (`cid`, `cname`)  VALUES (3, `lakshman`);
+INSERT INTO `mydb`.`account` (`aid`, `bal`) VALUES (12, 4321);
+INSERT INTO `mydb`.`customer_account`(`cid`,`aid`) VALUES (2, 11);
+
+SELECT * FROM mydb.account;
+
+SELECT * FROM mydb.customer_account;
+
+SELECT * FROM mydb.customer;
+
+
+select c.cid, c.cname, sum(a.bal) from customer c join account a join customer_account ca
+on c.cid = ca.cid and a.aid = ca.aid
+group by ca.cid having count(ca.aid) > 1
+
+
+
