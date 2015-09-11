@@ -12,6 +12,11 @@ It is primarily data mapper with a database-centric view of things. You map resu
 * use when complete control over SQL is needed, especially if you have good knowledge of SQL.
 * data model doesn’t cleanly match object model or can change/get complex over time.
 * MyBatis works better if your view is more database-centric.
+
+* Use when DB schema is very legacy and not normalized in nature.
+* Data model doesn’t cleanly match object model or can change/get complex over time.
+* Use when we have more stored procedures and functions than SQL queries.
+* MyBatis works better if your view is more database-centric, when client need to stick with only one Database for the DB connection and communication.
 -----------------------------------------------------------------------------------------------------------------------------
 <b>Hibernate</b>
 ----------------
