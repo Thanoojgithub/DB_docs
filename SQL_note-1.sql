@@ -29,3 +29,18 @@ on c.cid = ca.cid and a.aid = ca.aid
 group by ca.cid having count(ca.aid) > 1
 
 
+#------------------------------------------------------------
+
+ALTER TABLE mydb.emp ADD COLUMN salary double;
+
+update mydb.emp set salary=80000 where eid=5;
+
+#---- second highest salary ---- in MYSQL 
+select salary from (select e.eid, e.ename, e.salary from mydb.emp e order by salary desc limit 2) e order by e.salary limit 1 ;
+
+#ALTER TABLE mydb.emp DROP COLUMN salary;
+#ALTER TABLE mydb.emp ADD COLUMN age INT AFTER salary;
+#ALTER TABLE mydb.emp ADD age INT FIRST;
+#ALTER TABLE mydb.emp MODIFY column salary float(30,2);
+#ALTER TABLE mydb.emp CHANGE salary j BIGINT;
+
