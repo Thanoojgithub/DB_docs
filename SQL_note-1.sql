@@ -44,3 +44,10 @@ select salary from (select e.eid, e.ename, e.salary from mydb.emp e order by sal
 #ALTER TABLE mydb.emp MODIFY column salary float(30,2);
 #ALTER TABLE mydb.emp CHANGE salary j BIGINT;
 
+#-------------------using--GROUP BY--HAVING------ORDER BY-----------------------------------
+
+SELECT *
+FROM mydb.emp e
+WHERE e.salary >= 70000
+GROUP BY e.mid
+HAVING count(e.mid) > 1 ORDER BY e.salary DESC;
