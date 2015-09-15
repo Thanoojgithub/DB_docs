@@ -1,9 +1,17 @@
 select * from mydb.emp;
 
-select e1.eid 'emp ID', e1.ename 'emp Name', e2.eid 'mrg ID', e2.ename 'mrg Name' from emp e1 join emp e2
+#-- here, e1 is for employee and e2 is for manager
+select e1.eid 'emp ID', e1.ename 'Emp Name', e2.eid 'Mrg ID', e2.ename 'Mrg Name' 
+from emp e1 join emp e2
 on e1.mid = e2.eid;
 
-#--------------------------
+
+select e1.eid 'emp ID', e1.ename 'Emp Name', ifnull(e2.eid , 'No Mrg ID') 'Mrg ID', ifnull(e2.ename , 'No Mrg name')  'Mrg Name' 
+from emp e1 left join emp e2
+on e1.mid = e2.eid; 
+
+
+#--------------------------------------------------
 
 INSERT INTO `mydb`.`customer` (`cid`, `cname`)  VALUES (3, `lakshman`);
 INSERT INTO `mydb`.`account` (`aid`, `bal`) VALUES (12, 4321);
